@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>REGISTATION</title>
+<style>
+    h2{
+        color: green;
+        text-decoration: underline;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        text-align: center;
+        margin-top: 20px;
+    }
+    li{
+        color: red;
+    }
+    #random{
+        transform: translateY(20px);
+    }
+</style>
+{% if x %}
+<script>
+    alert('Profile Created Successfully!You may now log in!')
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>WELCOME TO THE REGISTRATION PAGE!!!</h2>
+<div class="container p-3 border border-primary rounded" id="random">
+    <ul>
+        <li><h6>THE CLINICS/HOSPITALS NEED TO REGISTER THEMSELVES ON THIS WEBSITE.</h6></li>
+        <li><h6>THEIR REGISTRATION WILL ENSURE THE SMOOTH CONDUCT OF THIS WEBSITE.</h6></li>
+        <li><h6>THE PATIENT WILL BE ABLE TO FIND THEM AND HENCE WILL BE ABLE TO BOOK THE APPOINTMENTS AND YOUR RECORDS WILL BE MAINTAINED IN THE DATABASE.</h6></li>
+    </ul>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="identification"><b>Name Of Clinic/Hospital</b></label>
+          <input type="text" class="form-control" id="identification" placeholder="Enter Name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="address"><b>Enter Address Of Clinic/Hospital</b></label>
+          <input type="text" class="form-control" id="address" placeholder="Enter Address" name="AddressName" required>
+        </div>
+        <div class="form-group">
+            <label for="city"><b>City</b></label>
+            <input type="text" class="form-control" id="city" placeholder="Enter City" name="city_name" required>
+        </div>
+        <div class="form-group">
+            <label for="state"><b>State</b></label>
+            <input type="text" class="form-control" id="state" placeholder="Enter State" name="state_name" required>
+          </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1"><b>Email Of Clinic/Hospital</b></label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="email_name" required>
+        </div>
+        <div class="form-group">
+            <label for="contact"><b>Enter Contact number</b></label>
+            <input type="number" class="form-control" id="contact" placeholder="Enter Contact Number" name="contact_name" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1"><b>Password</b></label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password_name" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1"><b>Upload Front Image Of Clinic/Hospital</b></label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" required>
+            <small class="form-text text-muted">PHOTO IS REQUESTED SO THAT THE PATEINT CAN IDENTIFY THE CLINIC/HOSPITAL AT THE REAL TIME LOCATION.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

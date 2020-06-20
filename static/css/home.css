@@ -1,0 +1,20 @@
+#heading{
+    text-decoration: underline;
+    margin-top: 20px;
+    color: blue;
+    font-family: fantasy;
+    letter-spacing: 5px;
+}
+#main{
+    background-image: url('static/images/hospital.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#division{
+    margin-top: 30px;
+}
+b{
+    color: white;
+    text-decoration: underline;
+}

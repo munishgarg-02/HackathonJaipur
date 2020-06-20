@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>PATIENT AREA</title>
+<style>
+    .heading1{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: red;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: underline;
+    }
+    .heading2{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: darkblue;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <h2 class='heading1'>WELCOME TO PATIENT PAGE!HERE IS LIST OF ALL HOSPITALS/NURSING HOMES/CLINICS!!</h2>
+    <h5 class='heading2'>(APPOINTMENTS CAN BE DONE USING 'BOOK APPOINTMENT')</h5>
+    <div class="container">
+    <div class="row p-5">
+        {% for object in x %}
+        <div class="col-md-4 col-sm-1">
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top" src="{{object.image.}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{object.name}}</h5>
+                  <p class="card-text">{{object.address}}</p>
+                  <p class="card-text">Email:- {{object.email}}</p>
+                  <p class="card-text">Contact Number:- {{object.number}}</p>
+                  <a href="#" class="btn btn-primary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
