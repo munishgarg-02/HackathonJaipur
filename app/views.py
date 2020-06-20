@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.auth import login,logout 
 # Create your views here.
 
 def home(request):
@@ -12,9 +14,6 @@ def home(request):
 
 
 def registration(request):
-    x = False
-    query = None
-    context={}
     if request.method == "POST":
         name = request.POST.get('name')
         address = request.POST.get('AddressName')
@@ -27,12 +26,14 @@ def registration(request):
         query = models.DetailsOfDoctors(name=name,address=address,city=city,state=state,email=email,number=number,image=image)
         query.save()
         if query:
-            x = True
             candidate = User.objects.create_user(username=email,password=password)
+            x=True
             context={
                 'x':x
             }
-    return render(request,'registration.html',context)
+            return render(request,'login.html',context)
+    return render(request,'registration.html')
+
 
 
 def patient(request):
@@ -44,17 +45,24 @@ def patient(request):
     return render(request,'patient.html',context)
 
 
-@login_required()
+
 def LogIn(request):
     context={}
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST('')
+        username = request.POST.get('email_name')
+        password = request.POST.get('password_name')
         x = authenticate(username=username,password=password)
         if x:
-            return HttpResponseRedirect('/')
+            login(request,x)
+            return HttpResponseRedirect('/home')
         else:
             context={
                 'x':x
             }
     return render(request,'login.html',context)
+
+
+@login_required(login_url='/login')
+def DoctorView(request):
+    context={}
+    return render(request,'view.html',context)
