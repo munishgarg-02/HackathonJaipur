@@ -2,6 +2,26 @@
 {% block head %}
 <title>PATIENT DETAIL</title>
 {% endblock %}
-
 {% block content %}
+{% if user.is_authenticated %}
+    <h2 align="center" style="text-decoration: underline;font-family: Georgia, 'Times New Roman', Times, serif;color: green;">PATIENT REQUEST DETAILS</h2>
+    <div class="container border border-primary rounded mt-2">
+        {% for x in details %}
+            {% if user.username == x.Hospital.email %}
+            <!--Here goes the HTML Code-->
+                <div class="row">
+                    <ul>
+                    <li><strong>Name: </strong>{{x.Name}}</li>
+                    <li><strong>Age: </strong>{{x.Age}}</li>
+                    <li><strong>Gender: </strong>{{x.Gender}}</li>
+                    <li><strong>Disease: </strong>{{x.Disease}}</li>
+                    <li><strong>Contact: </strong><a href="#">{{x.Contact}}</a></li>
+                    </ul>
+                </div>
+                <hr>      
+            {% endif %}
+        {% endfor %}
+        <a href="{% url 'logout' %}" class="btn btn-success"><b>LOGOUT</b></a>
+    </div>
+{% endif %}
 {% endblock %}

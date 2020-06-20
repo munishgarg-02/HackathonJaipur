@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>APPOINTMENT</title>
+<style>
+    #heading{
+        text-align: center;
+        text-decoration: underline;
+        color: green;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    #list{
+        text-align: center;
+        list-style: none;
+    }
+    #heading2{
+        text-align: center;
+        text-decoration: underline;
+        color: green;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    form{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container border border-danger rounded mt-2">
+    <h4 id="heading">DETAILS OF CLINIC/HOSPITAL/NURSING HOME</h4>
+    <ul id="list">
+        <li>NAME:- {{query.name}}</li>
+        <li>ADDRESS:- {{query.address}}</li>
+        <li>CITY:- {{query.city}}</li>
+        <li>STATE:- {{query.state}}</li>
+        <li>E-MAIL:- {{query.email}}</li>
+        <li>CONTACT NUMER:- {{query.number}}</li>
+        <li>IMAGE:- {{query.image}}</li>
+    </ul>
+    <hr>
+    <h5 id="heading2">FORM(TO BE FILLED IN BY PATIENT)</h5>
+    <form method="POST">
+        {% csrf_token %}
+        {% for x in form %}
+            <b>{{x.name}}</b> : {{x}}<br><br>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+    </form>
+</div>
+{% endblock %}

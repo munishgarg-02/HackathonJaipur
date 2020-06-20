@@ -3,5 +3,6 @@ from app import models
 # Register your models here.
 
 admin.site.register([
-    models.DetailsOfDoctors
+    models.DetailsOfDoctors,
+    models.PatientDetails
 ])

@@ -3,7 +3,7 @@ from django.core.validators import (
     EmailValidator
 )
 
-# Create your models here.
+
 class DetailsOfDoctors(models.Model):
     name = models.CharField(max_length = 256)
     address = models.TextField()
@@ -14,4 +14,20 @@ class DetailsOfDoctors(models.Model):
     image = models.ImageField()
     def __str__(self):
         return self.name
+    
+
+class PatientDetails(models.Model):
+    GENDERS = (
+        ('M','MALE'),
+        ('F','FEMALE'),
+        ('O','OTHERS')
+    )
+    Name = models.CharField(max_length=256)
+    Age = models.IntegerField()
+    Gender = models.CharField(max_length=2,choices=GENDERS)
+    Disease = models.TextField()
+    Contact = models.IntegerField()
+    Hospital = models.ForeignKey('DetailsOfDoctors',on_delete=models.CASCADE)
+    def __str__(self):
+        return self.Name
     

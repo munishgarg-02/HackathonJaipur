@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from app import models
+from app import models , forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login,logout 
 # Create your views here.
@@ -54,11 +54,13 @@ def LogIn(request):
         x = authenticate(username=username,password=password)
         if x:
             login(request,x)
-            return HttpResponseRedirect('/home')
-        else:
-            context={
-                'x':x
+            details = models.PatientDetails.objects.all()
+            context = {
+                'details':details
             }
+            return render(request,'view.html',context)
+        else:
+            pass
     return render(request,'login.html',context)
 
 
@@ -66,3 +68,31 @@ def LogIn(request):
 def DoctorView(request):
     context={}
     return render(request,'view.html',context)
+
+
+
+def detail(request,pk):
+    query = models.DetailsOfDoctors.objects.get(pk=pk)
+    form = forms.Patient()
+    if request.method == "POST":
+        form = forms.Patient(request.POST)
+        name = request.POST['Name']
+        if form.is_valid():
+            form.save()
+            x=True
+            context={
+                'x':x,
+                'name':name
+            }
+            return render(request,'home.html',context)
+    context={
+        'query':query,
+        'form':form
+    }
+    return render(request,'detail.html',context)
+
+
+
+def LogOut(request):
+    logout(request)
+    return HttpResponse('YOU LOGGED OUT SUCCESSFULLY!!!')

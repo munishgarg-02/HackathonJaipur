@@ -26,13 +26,13 @@
         {% for object in x %}
         <div class="col-md-4 col-sm-1">
             <div class="card" style="width: 15rem;">
-                <img class="card-img-top" src="{{object.image.}}" alt="Card image cap">
+                <img class="card-img-top" src="{{object.photo.url}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{object.name}}</h5>
                   <p class="card-text">{{object.address}}</p>
                   <p class="card-text">Email:- {{object.email}}</p>
                   <p class="card-text">Contact Number:- {{object.number}}</p>
-                  <a href="#" class="btn btn-primary">Book Appointment</a>
+                  <a href="{% url 'detail' object.id %}" class="btn btn-primary">Book Appointment</a>
                 </div>
             </div>
         </div>
