@@ -9,6 +9,6 @@ urlpatterns = [
     path('detail/<int:pk>',views.detail,name='detail'),
     path('logout',views.LogOut,name='logout'),
     path('about',views.about,name='about'),
-    path('sms',views.sms,name='sms')
-    path('',views.home,name='home'),
+    path('sms',views.sms,name='sms'),
+    path('',views.home,name='home')
 ]
