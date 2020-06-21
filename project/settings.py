@@ -25,7 +25,9 @@ SECRET_KEY = '#_-ljxrv^#sjer^yf6i)uva44ou1)n%ke)zys^q$vjon(*%k!y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'connectmedico.herokuapp.com'
+]
 
 
 # Application definition
