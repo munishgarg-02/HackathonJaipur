@@ -13,13 +13,21 @@
     </button>
 </div>
 {% endif %}
-<h1 align="center" id="heading">WELCOME TO THE HOME PAGE</h1>
+{% if y %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Logged Out Successfully!!!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+<h1 align="center" id="heading">WELCOME TO THE 'ConnectMedico' WEB APP</h1>
 <div class="container p-4 border border-warning rounded" id="division">
     <div class="row p-5">
-        <a class="btn btn-danger col-12 p-4" class="col-12 btn btn-danger p-4" href="{% url 'patient' %}"><b>FOR PATIENTS</b></a>
+        <a class="btn btn-danger col-12 p-4" class="col-12 btn btn-danger p-4" href="{% url 'patient' %}"><b>FOR PATIENTS(click here)</b></a>
     </div>
     <div class="row p-5">
-        <a class="btn btn-success col-12 p-4" href="{% url 'registration' %}"><b>FOR CLINICS/HOSPITALS/NURSING HOMES</b></a>
+        <a class="btn btn-success col-12 p-4" href="{% url 'registration' %}"><b>FOR CLINICS/HOSPITALS/NURSING HOMES(click here)</b></a>
     </div>
 </div>
 {% endblock  %}

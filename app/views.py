@@ -3,14 +3,19 @@ from app import models , forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login,logout 
-# Create your views here.
+from sendsms import api
+from django.http import HttpResponseRedirect
+
+
+
 
 def home(request):
     context={}
     return render(request,'home.html',context)
+
+
 
 
 def registration(request):
@@ -36,6 +41,7 @@ def registration(request):
 
 
 
+
 def patient(request):
     queryset = models.DetailsOfDoctors.objects.all()
     context={
@@ -43,6 +49,7 @@ def patient(request):
     }
     print(queryset)
     return render(request,'patient.html',context)
+
 
 
 
@@ -64,10 +71,13 @@ def LogIn(request):
     return render(request,'login.html',context)
 
 
+
+
 @login_required(login_url='/login')
 def DoctorView(request):
     context={}
     return render(request,'view.html',context)
+
 
 
 
@@ -93,6 +103,23 @@ def detail(request,pk):
 
 
 
+
 def LogOut(request):
     logout(request)
-    return HttpResponse('YOU LOGGED OUT SUCCESSFULLY!!!')
+    y=True
+    context={
+        'y':y
+    }
+    return render(request,'home.html',context)
+
+
+
+
+def about(request):
+    return render(request,'about.html')
+
+
+
+def sms(request):
+    api.send_sms(body='I can haz txt', from_phone='+919667626421', to=['+919560440822'])
+    return HttpResponseRedirect('/home')

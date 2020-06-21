@@ -8,5 +8,7 @@ urlpatterns = [
     path('login',views.LogIn,name='login'),
     path('view',views.DoctorView,name='view'),
     path('detail/<int:pk>',views.detail,name='detail'),
-    path('logout',views.LogOut,name='logout')
+    path('logout',views.LogOut,name='logout'),
+    path('about',views.about,name='about'),
+    path('sms',views.sms,name='sms')
 ]
