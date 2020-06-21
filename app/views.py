@@ -29,9 +29,9 @@ def registration(request):
         image = request.POST.get('image')
         password = request.POST.get('password_name')
         query = models.DetailsOfDoctors(name=name,address=address,city=city,state=state,email=email,number=number,image=image)
-        query.save()
         if query:
             candidate = User.objects.create_user(username=email,password=password)
+            query.save()
             x=True
             context={
                 'x':x
