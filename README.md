@@ -1,4 +1,4 @@
-# HackathonJaipur(by MLH)
+# HackJaipur(A Hackathon by MLH)
 # We have explained all the concept of the project in the video section
 # username-munish
 # password-password
